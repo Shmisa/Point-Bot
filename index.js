@@ -178,12 +178,6 @@ async function updateLeaderboard() {
   }
 }
 
-// Server Keep-Alive (for Replit/Glitch)
-http.createServer((req, res) => {
-  res.writeHead(200);
-  res.end('Bot is running');
-}).listen(process.env.PORT || 3000);
-
 client.once('ready', () => {
   console.log(`Bot is online as ${client.user.tag}`);
 });
@@ -221,14 +215,6 @@ exports = {
 // ──────────────────────────────────────────────────────────
 client.once('ready', () => {
   console.log(`Bot is online as ${client.user.tag}`);
-});
-
-const PORT = process.env.PORT || 3001;
-http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Bot is running');
-}).listen(PORT, () => {
-  console.log(`HTTP server listening on port ${PORT}`);
 });
 
 client.on('messageCreate', async (message) => {
