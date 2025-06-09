@@ -7,17 +7,6 @@
  */
 console.log('=== BOT SCRIPT STARTING ===');
 
-// Prevent multiple bot instances
-if (global.alreadyStarted) {
-  console.log('❌ Duplicate instance detected. Exiting.');
-  process.exit(1);
-}
-global.alreadyStarted = true;
-
-// Give each instance a unique ID for debugging
-const instanceId = Math.floor(Math.random() * 10000);
-console.log(`🔁 Bot instance ID: ${instanceId}`);
-
 const { Client, GatewayIntentBits, PermissionsBitField, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
 const fs = require('fs').promises;
 const fsSync = require('fs');
@@ -879,8 +868,6 @@ async function handleMyStats(message) {
 
 // ---------- Event Handlers ----------
   client.on('messageCreate', async (message) => {
-    console.log(`📩 [${instanceId}] Command received: ${message.content} from ${message.author.tag}`);
-
     if (message.author.bot || !message.content || !message.content.startsWith(BOT_PREFIX)) {
       return;
     }
